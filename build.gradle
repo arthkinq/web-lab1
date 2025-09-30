@@ -24,7 +24,7 @@ test {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'ru.arf.MainH' //MainH если jar создается для гелиоса Main3 experimental
+                'Main-Class': 'ru.arf.MainH'
         )
     }
     from {

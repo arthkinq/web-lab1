@@ -18,7 +18,6 @@ public class MainH {
     public static void main(String[] args) {
         var fcgi = new FCGIInterface();
         System.err.println("FastCGI Server started, waiting for requests...");
-
         while (fcgi.FCGIaccept() >= 0) {
             long startTime = System.nanoTime();
 
@@ -46,11 +45,10 @@ public class MainH {
                         x, y, r, hit, currentTime, executionTimeMs
                 );
 
-                // ЭТО ВАЖНО: Мы снова генерируем ПОЛНЫЙ HTTP-ответ из-за флага -nph
                 String httpResponse = "HTTP/1.1 200 OK\r\n" +
                         "Content-Type: application/json\r\n" +
                         "Content-Length: " + jsonBody.getBytes(StandardCharsets.UTF_8).length + "\r\n" +
-                        "\r\n" + // Критически важная пустая строка
+                        "\r\n" +
                         jsonBody;
 
                 System.out.print(httpResponse);
@@ -86,7 +84,7 @@ public class MainH {
         for (String param : qs.split("&")) {
             String[] pair = param.split("=", 2);
             if (pair.length > 1 && !pair[1].isEmpty()) {
-                result.put(URLDecoder.decode(pair[0], "UTF-8"), URLDecoder.decode(pair[1], "UTF-8"));
+                result.put(URLDecoder.decode(pair[0], StandardCharsets.UTF_8), URLDecoder.decode(pair[1], StandardCharsets.UTF_8));
             }
         }
         return result;

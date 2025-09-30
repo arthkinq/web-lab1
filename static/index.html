@@ -305,7 +305,7 @@
                 <div class="button-group" id="r-button-group">
                     <button type="button" class="r-button" data-value="1">1</button>
                     <button type="button" class="r-button" data-value="1.5">1.5</button>
-                    <button type="button" class="r-button" data-value="2">2</button>
+                    <button type="button" class="r-button " data-value="2">2</button>
                     <button type="button" class="r-button" data-value="2.5">2.5</button>
                     <button type="button" class="r-button" data-value="3">3</button>
                 </div>
@@ -424,10 +424,6 @@
             saveResultsToStorage(results);
 
             drawPoint(data.x, data.y, data.r, data.hit);
-
-            const urlParams = new URLSearchParams(formData);
-            const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
-            history.replaceState({ path: newUrl }, '', newUrl);
 
         } catch (error) {
             console.error('Fetch error:', error);
