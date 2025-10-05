@@ -1,0 +1,262 @@
+$bg-color: #faf7fc;
+$text-color: #2d1b36;
+$header-bg: #1e293b;
+$header-text: #f8f7f9;
+$primary-accent: #8a4baf;
+$primary-accent-hover: #7a3f9f;
+$secondary-accent: #007bff;
+$danger-color: #bf001a;
+$danger-color-hover: #ff0018;
+$hit-true-bg: #e6e9fa;
+$hit-false-bg: #f9eaea;
+$border-radius-std: 0.8em;
+$font-size-base: 16px;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: fantasy, "Roboto", "Open Sans", Arial, sans-serif;
+  background-color: $bg-color;
+  color: $text-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 90vh;
+  margin: 0;
+  letter-spacing: 0.05rem;
+  overflow-x: hidden;
+  font-size: $font-size-base;
+}
+
+#page-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 98%;
+  padding: 0.5rem 0;
+  background-color: $header-bg;
+  color: $header-text;
+  font-family: fantasy;
+  border-radius: 0 0 $border-radius-std $border-radius-std;
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  p {
+    font-size: 1.2rem;
+  }
+}
+
+#main-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  width: 100%;
+  justify-content: center;
+  margin-top: 1.5rem;
+  padding: 0 0 2rem 2rem;
+  max-width: 90vw;
+}
+
+.panel {
+  flex-grow: 1;
+  flex-basis: 400px;
+  padding: 1.5vw;
+  background-color: #fff;
+  border-radius: $border-radius-std;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  max-width: 95vw;
+  height: min-content;
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  max-width: 100%;
+
+  h2 {
+    margin: 0;
+  }
+}
+
+#clear-button {
+  padding: 0.6rem 1.2rem;
+  background-color: $danger-color;
+  color: white;
+  border: none;
+  border-radius: $border-radius-std;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $danger-color-hover;
+  }
+}
+
+#graph-container {
+  margin: 0 auto 2%;
+}
+
+.graph-area {
+  fill: #6daded;
+  stroke: #3a75b3;
+  stroke-width: 1;
+}
+
+.axis {
+  stroke: #000000;
+  stroke-width: 2;
+}
+
+.axis-label,
+.tick-label {
+  font-family: monospace;
+  font-size: 10px;
+  fill: #000;
+}
+
+.tick-line {
+  stroke: #000000;
+  stroke-width: 1;
+}
+
+#result-dot {
+  transition: cx 0.3s, cy 0.3s;
+}
+
+#main-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  font-size: 1rem;
+}
+
+.form-section {
+  padding: 2%;
+  border-radius: $border-radius-std;
+  margin-bottom: 2%;
+
+  h3 {
+    border-bottom: 2px solid $primary-accent;
+    padding-bottom: 0.5rem;
+    margin-top: 0;
+  }
+}
+
+.input-group > label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.radio-group,
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  column-gap: 2.1rem;
+  font-size: 1rem;
+}
+
+.button-group {
+  justify-content: space-around;
+  column-gap: 0.5em;
+}
+
+#y-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: $border-radius-std;
+  font-size: 1em;
+}
+
+.r-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid $secondary-accent;
+  background-color: #fff;
+  border-radius: 0.4em;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+
+  &:hover {
+    background-color: #e2f1ff;
+  }
+
+  &.selected {
+    background-color: $secondary-accent;
+    color: white;
+  }
+}
+
+#submit-button {
+  padding: 1rem;
+  background-color: $primary-accent;
+  color: white;
+  border: none;
+  border-radius: $border-radius-std;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $primary-accent-hover;
+  }
+}
+
+.error {
+  color: #aa0400;
+  text-align: center;
+  margin-top: 1%;
+  min-height: 1.2em;
+  font-weight: bold;
+}
+
+#results-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: center;
+    min-width: 4vw;
+  }
+
+  th:nth-child(4) {
+    min-width: 7vw;
+  }
+
+  thead {
+    background-color: $header-bg;
+    color: $header-text;
+  }
+
+  .hit-true {
+    background-color: $hit-true-bg;
+  }
+
+  .hit-false {
+    background-color: $hit-false-bg;
+  }
+}
+
+#table-wrapper {
+  height: 68vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-gutter: stable both-edges;
+  padding-right: 1.3rem;
+}
